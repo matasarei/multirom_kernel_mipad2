@@ -1,5 +1,3 @@
-#line 1 "external/sepolicy/file_contexts"
-###########################################
 # Root
 /			u:object_r:rootfs:s0
 
@@ -26,9 +24,7 @@
 /seapp_contexts		u:object_r:rootfs:s0
 /sepolicy		u:object_r:rootfs:s0
 
-##########################
 # Devices
-#
 /dev(/.*)?		u:object_r:device:s0
 /dev/akm8973.*		u:object_r:sensors_device:s0
 /dev/accelerometer	u:object_r:sensors_device:s0
@@ -120,9 +116,8 @@
 /dev/zero		u:object_r:zero_device:s0
 /dev/__kmsg__		u:object_r:klog_device:s0
 /dev/__properties__ u:object_r:properties_device:s0
-#############################
+
 # System files
-#
 /system(/.*)?		u:object_r:system_file:s0
 /system/bin/sh		--	u:object_r:shell_exec:s0
 /system/bin/run-as	--	u:object_r:runas_exec:s0
@@ -162,17 +157,14 @@
 /system/bin/vdc         u:object_r:vdc_exec:s0
 /system/bin/install-recovery.sh u:object_r:install_recovery_exec:s0
 /system/bin/dex2oat     u:object_r:dex2oat_exec:s0
-# patchoat executable has (essentially) the same requirements as dex2oat.
+# patchoat executable has the same requirements as dex2oat.
 /system/bin/patchoat    u:object_r:dex2oat_exec:s0
 
-#############################
 # Vendor files
-#
 /vendor(/.*)?		u:object_r:system_file:s0
 /vendor/bin/gpsd	u:object_r:gpsd_exec:s0
-#############################
+
 # Data files
-#
 /data(/.*)?		u:object_r:system_data_file:s0
 /data/.layout_version		u:object_r:install_data_file:s0
 /data/backup(/.*)?		u:object_r:backup_data_file:s0
@@ -225,21 +217,17 @@
 
 # Wallpaper file for other users
 /data/system/users/[0-9]+/wallpaper		u:object_r:wallpaper_file:s0
-#############################
+
 # efs files
-#
 /efs(/.*)?		u:object_r:efs_file:s0
-#############################
+
 # Cache files
-#
 /cache(/.*)?		u:object_r:cache_file:s0
 /cache/.*\.data	u:object_r:cache_backup_file:s0
 /cache/.*\.restore	u:object_r:cache_backup_file:s0
-# LocalTransport (backup) uses this directory
 /cache/backup(/.*)?	u:object_r:cache_backup_file:s0
-#############################
+
 # sysfs files
-#
 /sys/devices/platform/nfc-power/nfc_power -- u:object_r:sysfs_nfc_power_writable:s0
 /sys/devices/system/cpu(/.*)?    u:object_r:sysfs_devices_system_cpu:s0
 /sys/power/wake_lock -- u:object_r:sysfs_wake_lock:s0
@@ -254,13 +242,12 @@
 /sys/devices/pci0000:00/808622C1:02/i2c-2/i2c-KTD20260:00/leds/.*/brightness              -- u:object_r:sysfs_brightness_writable:s0
 /sys/devices/pci0000:00/808622C1:02/i2c-2/i2c-KTD20260:00/leds/.*/max_brightness              -- u:object_r:sysfs_brightness_writable:s0
 
-#############################
 # asec containers
 /mnt/asec(/.*)?             u:object_r:asec_apk_file:s0
 /mnt/asec/[^/]+/[^/]+\.zip  u:object_r:asec_public_file:s0
 /mnt/asec/[^/]+/lib(/.*)?   u:object_r:asec_public_file:s0
 /data/app-asec(/.*)?        u:object_r:asec_image_file:s0
-#line 1 "device/intel/common/sepolicy/file_contexts"
+
 # CPU
 /dev/msr[0-3]               u:object_r:msr_device:s0
 
@@ -306,11 +293,10 @@
 /data/nfc                   u:object_r:nfc_data_file:s0
 /dev/nfcc                   u:object_r:nfc_device:s0
 
-# GPS
-
 # Sdcard
 /data/media/0               u:object_r:media_rw_data_file:s0
 
+# GPS
 /dev/ttyHSU1                u:object_r:gps_device:s0
 /dev/gsmtty7                u:object_r:gps_device:s0
 /system/bin/gpsd            u:object_r:gpsd_exec:s0
@@ -341,9 +327,7 @@
 # Persistent partition
 /dev/block/platform/pci0000:00/80860F14:00/by-name/android_persistent  u:object_r:frp_block_device:s0
 
-###################################
 # persist files
-#
 /persist(/.*)?                                                      u:object_r:persist_file:s0
 
 # Thermal daemon
@@ -373,7 +357,7 @@
 /system/bin/hdcpd           u:object_r:hdcpd_exec:s0
 /data/hdcp(/.*)?            u:object_r:hdcpd_data_file:s0
 
-# NFC (for better labeling of sysfs files used by others)
+# NFC
 /sys/module/pn544_nfc/initstate      u:object_r:sysfs_nfc_initstate:s0
 
 # Powercap
@@ -415,16 +399,14 @@
 
 # for display feature
 /system/bin/eyecare             u:object_r:eyecare_exec:s0
-#line 1 "device/intel/common/sepolicy/crashlogd/file_contexts"
+
 # Crashlogd executable
 /system/bin/crashlogd u:object_r:crashlogd_exec:s0
 
 # Dumpstate dropbox script
 /system/bin/dumpstate_dropbox.sh u:object_r:dumpstate_dropbox_exec:s0
-#line 1 "miui/device/common/sepolicy/common/file_contexts"
-########################################
+
 # System files
-#
 /system/xbin/shelld     u:object_r:shelld_exec:s0
 /system/xbin/mqsasd     u:object_r:mqsasd_exec:s0
 /system/bin/fdpp        u:object_r:fdpp_exec:s0
@@ -433,7 +415,6 @@
 /dev/android_mdb.*     u:object_r:mdb_device:s0
 /dev/socket/mdbd       u:object_r:mdbd_socket:s0
 
-########################################
 # Mcd related file and devices
 /system/bin/mcd          u:object_r:mcd_exec:s0
 /dev/xiaomi_wsevents     u:object_r:mcd_device:s0
@@ -445,44 +426,29 @@
 /data/system/whetstone(/.*)?   u:object_r:whetstone_data_file:s0
 /sys/hwconf(/.*)?        u:object_r:hwconf_data_file:s0
 
-########################################
 # for nativedebug
-#
 /data/system/nativedebug(/.*)?         u:object_r:miui_native_file:s0
 
-########################################
 # theme runtime files
-#
 /data/system/theme(/.*)?      u:object_r:theme_data_file:s0
 /data/system/theme_magic(/.*)?      u:object_r:theme_data_file:s0
 
-########################################
 # Dev socket nodes
 /dev/socket/otad        u:object_r:otad_socket:s0
 
-#############################
 # Cust files
-#
 /cust(/.*)?         u:object_r:system_file:s0
 
-########################################
 # mqsas data file
-#
 /data/mqsas(/.*)?      u:object_r:mqsas_data_file:s0
-#line 1 "miui/device/common/sepolicy/v21/file_contexts"
+
 /system/xbin/mdb_svc    u:object_r:mdb_svc_exec:s0
 
-########################################
 # for nativedebug
-#
 /data/system/nativedebug/core(/.*)?    u:object_r:miui_coredump_file:s0
 
-########################################
 # Performance Init Exec
-#
 /(vendor|system/vendor)/bin/system_perf_init  u:object_r:system_perf_init_exec:s0
 
-#######################################
 # miui rtmm debugfs
-#
 /sys/kernel/debug/rtmm(/.*)?          u:object_r:debugfs_rtmm:s0
