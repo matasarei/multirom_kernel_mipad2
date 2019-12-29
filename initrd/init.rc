@@ -10,11 +10,9 @@
 # init.aosp.rc actually gets parsed after all the content of this file.
 import /init.aosp.rc
 
-
 ### Services ###
 # Android init only keeps the first definition found for a service.
 # Override a service from Android default init.rc by adding it here.
-
 service media /system/bin/mediaserver
     class main
     user media
@@ -24,4 +22,11 @@ service media /system/bin/mediaserver
 service flash_recovery /system/bin/install-recovery.sh
     class main
     seclabel u:r:install_recovery:s0
+    oneshot
+
+# Execute files in /etc/init.d during boot
+service sysinit /system/bin/logwrapper /system/xbin/busybox run-parts /system/etc/init.d
+    class late_start
+    user root
+    group root
     oneshot
