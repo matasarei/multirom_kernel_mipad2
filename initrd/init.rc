@@ -25,7 +25,7 @@ service flash_recovery /system/bin/install-recovery.sh
     oneshot
 
 # Execute files in /etc/init.d during boot
-service sysinit /system/bin/logwrapper /system/xbin/busybox run-parts /system/etc/init.d
+service sysinit /system/bin/logwrapper /system/bin/busybox run-parts /system/etc/init.d
     class late_start
     user root
     group root
