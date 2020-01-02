@@ -13,3 +13,5 @@ case "$sdk" in
             fi
         fi
 esac
+
+/system/bin/service call activity 51 i32 24
