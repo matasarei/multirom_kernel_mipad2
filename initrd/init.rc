@@ -30,3 +30,20 @@ service sysinit /system/bin/logwrapper /system/bin/busybox run-parts /system/etc
     user root
     group root
     oneshot
+
+# Provide battery info while healthd is stopped
+on property:sys.boot_completed=1
+    start battery-status
+    start battery-capacity
+
+service battery-status /system/bin/sh /init.battery.status.sh
+    class late_start
+    user root
+    disabled
+    oneshot
+
+service battery-capacity /system/bin/sh /init.battery.capacity.sh
+    class late_start
+    user root
+    disabled
+    oneshot
