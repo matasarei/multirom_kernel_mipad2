@@ -19,11 +19,6 @@ service media /system/bin/mediaserver
     group audio camera inet net_bt net_bt_admin net_bw_acct drmrpc mediadrm system radio
     ioprio rt 4
 
-service flash_recovery /system/bin/install-recovery.sh
-    class main
-    seclabel u:r:install_recovery:s0
-    oneshot
-
 # Execute files in /etc/init.d during boot
 service sysinit /system/bin/logwrapper /system/bin/busybox run-parts /system/etc/init.d
     class late_start

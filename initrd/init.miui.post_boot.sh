@@ -15,3 +15,5 @@ case "$sdk" in
 esac
 
 /system/bin/service call activity 51 i32 24
+
+echo 0 >/proc/sys/vm/oom_dump_tasks

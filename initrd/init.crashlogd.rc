@@ -15,6 +15,7 @@ on post-fs-data
 
 service crashlogd /system/bin/crashlogd
     class late_start
+    disabled
 
 # started by vendor/intel/log_capture/crashlog
 service logsystemstate /system/bin/dumpstate_dropbox.sh -v

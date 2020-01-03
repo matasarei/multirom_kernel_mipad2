@@ -94,6 +94,7 @@ service otad /bin/otad
     class main
     socket otad stream 0660 updater updater
     seclabel u:r:otad:s0
+    disabled
 
 # will delete this service, /system may be invalidate yet when post-fs-data triggered
 service checkpath /system/xbin/miuioneshots check-sdk-path
@@ -170,7 +171,6 @@ service miui-early-boot /system/bin/sh /init.miui.early_boot.sh
     user root
     oneshot
     seclabel u:r:miui_init_shell:s0
-
 
 service system_perf_init /vendor/bin/system_perf_init
     class main
